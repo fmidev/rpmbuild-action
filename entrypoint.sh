@@ -9,34 +9,33 @@ DNF_COMMANDS="$6"
 
 dnf -y install rpm-build rpmdevtools git yum-utils dnf-plugins-core findutils
 
-if [ "$ADDITIONAL_REPOS" != "none" ]; then
+if [ -n "$ADDITIONAL_REPOS" ]; then
   for i in $(echo $ADDITIONAL_REPOS | tr ',' ' '); do
     dnf -y install $i
   done
 fi
 
-if [ "$ENABLE_REPOS" != "none" ]; then
+if [ -n "$ENABLE_REPOS" ]; then
   for i in $(echo $ENABLE_REPOS | tr ',' ' '); do
     dnf config-manager --set-enabled $i
   done
 fi
 
-if [ "$ENABLE_MODULES" != "none" ]; then
+if [ -n "$ENABLE_MODULES" ]; then
   for i in $(echo $ENABLE_MODULES | tr ',' ' '); do
     dnf -y module enable $i
   done
 fi
 
-if [ "$DISABLE_MODULES" != "none" ]; then
+if [ -n "$DISABLE_MODULES" ]; then
   for i in $(echo $DISABLE_MODULES | tr ',' ' '); do
     dnf -y module disable $i
   done
 fi
 
-if [ "$DNF_COMMANDS" != "none" ]; then
+if [ -n "$DNF_COMMANDS" ]; then
   eval "$DNF_COMMANDS"
 fi
-
 
 rpmdev-setuptree
 
