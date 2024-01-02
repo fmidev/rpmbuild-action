@@ -12,6 +12,9 @@ Inspired by naveenrajm7/rpmbuild@master.
 - `additional_repos`: A list of additional repositories that you want enabled [**optional**]
 - `enable_modules`: A list of dnf modules to enable [**optional**]
 - `disable_modules`: A list of dnf modules to disable [**optional**]
+- `dnf_commands`: Command that's executed as a part of the package initialization [**optional**]
+- `pre_build_hook`: Command that's execute before rpm build starts [**optional**]
+- `post_build_hook`: Command that's execute after rpm build is finished [**optional**]
 
 ### Outputs
 
@@ -19,4 +22,7 @@ Inspired by naveenrajm7/rpmbuild@master.
 - `srpm_dir_path`: path to SRPMS directory
 
 ### Example workflow - build RPM
+
+https://github.com/fmidev/github-actions-workflows/blob/main/.github/workflows/rpmbuild-workflow.yaml
+
 

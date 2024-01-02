@@ -22,6 +22,12 @@ inputs:
   dnf_commands:
     description: 'Additional dnf commands to run'
     required: false
+  pre_build_hook:
+    description: "Run commands before rpm build starts"
+    required: false
+  post_build_hook:
+    description: "Run commands after rpm build is finished"
+    required: false
 outputs:
   srpm_dir_path:
     description: 'path to SRPMS directory'
@@ -35,7 +41,7 @@ runs:
   steps:
     - run: echo Building spec ${{ inputs.spec_file }}
       shell: bash
-    - run: sh ${GITHUB_ACTION_PATH}/entrypoint.sh "${{ inputs.spec_file }}" "${{ inputs.additional_repositories }}" "${{ inputs.enable_repositories }}" "${{ inputs.enable_modules }}" "${{ inputs.disable_modules }}" "${{ inputs.dnf_commands }}"
+    - run: sh ${GITHUB_ACTION_PATH}/entrypoint.sh "${{ inputs.spec_file }}" "${{ inputs.additional_repositories }}" "${{ inputs.enable_repositories }}" "${{ inputs.enable_modules }}" "${{ inputs.disable_modules }}" "${{ inputs.dnf_commands }}" "${{ inputs.pre_build_hook }}" "${{ inputs.post_build_hook }}"
       shell: bash
       id: build_rpm
 

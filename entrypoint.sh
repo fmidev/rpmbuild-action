@@ -37,6 +37,10 @@ if [ -n "$DNF_COMMANDS" ]; then
   eval "$DNF_COMMANDS"
 fi
 
+if [ -n "$PRE_BUILD_HOOK" ]; then
+  eval "$PRE_BUILD_HOOK"
+fi
+
 rpmdev-setuptree
 
 name=$(rpmspec --parse $SPEC_FILE --query --queryformat "%{Name}" --srpm)
@@ -64,6 +68,10 @@ mkdir -p /github/workspace/rpmbuild/SRPMS  /github/workspace/rpmbuild/RPMS
 find /github/home/rpmbuild/SRPMS/ -type f -name "*.src.rpm" -exec cp {} /github/workspace/rpmbuild/SRPMS \;
 find /github/home/rpmbuild/RPMS/ -type f -name "*.rpm" -exec cp {} /github/workspace/rpmbuild/RPMS \;
 ls -la /github/workspace/rpmbuild/SRPMS /github/workspace/rpmbuild/RPMS
+
+if [ -n "$POST_BUILD_HOOK" ]; then
+  eval "$POST_BUILD_HOOK"
+fi
 
 echo "srpm_dir_path=rpmbuild/SRPMS/" >> "$GITHUB_OUTPUT"
 echo "rpm_dir_path=rpmbuild/RPMS/" >> "$GITHUB_OUTPUT"
