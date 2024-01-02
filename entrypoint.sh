@@ -6,6 +6,8 @@ ENABLE_REPOS="$3"
 ENABLE_MODULES="$4"
 DISABLE_MODULES="$5"
 DNF_COMMANDS="$6"
+PRE_BUILD_HOOK="$7"
+POST_BUILD_HOOK="$8"
 
 dnf -y install rpm-build rpmdevtools git yum-utils dnf-plugins-core findutils
 
