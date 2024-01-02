@@ -10,23 +10,18 @@ inputs:
   additional_repositories:
     description: 'A list of additional repositories to install'
     required: false
-    default: none
   enable_repositories:
     description: 'A list of additional repositories to enable'
     required: false
-    default: none
   enable_modules:
     description: 'A list of dnf modules to enable'
     required: false
-    default: none
   disable_modules:
     description: 'A list of dnf modules to disable'
     required: false
-    default: none
   dnf_commands:
     description: 'Additional dnf commands to run'
     required: false
-    default: none
 outputs:
   srpm_dir_path:
     description: 'path to SRPMS directory'
