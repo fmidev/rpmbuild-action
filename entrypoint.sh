@@ -57,7 +57,7 @@ ln -sf /github/home/rpmbuild/SOURCES/${name}-${version}.tar.gz /github/home/rpmb
 
 ls -lah /github/workspace/ /github/home/rpmbuild/SOURCES/
 
-dnf builddep -y $SPEC_FILE
+dnf builddep -y $SPEC_FILE --allowerasing
 
 commit_id=$(echo "$GITHUB_SHA" | cut -c1-8) # short commit id
 
